@@ -114,7 +114,7 @@ select {
         <div class="form-group">
 			
 				<input type="text" id="username" class="form-control required-field" name="username" placeholder="username" >
-				<small class="error" id="username-validation"></small>
+				<small class="error validation-message" id="username-validation"></small>
 
 				
         </div>
@@ -133,7 +133,7 @@ select {
 
         </div>
 		
-        <div class="form-group" onchange="validateRequiredField()">
+        <div class="form-group">
 			<select name="Nationality" id="nationality" class="form-control required-field">
 				<option value="">Nationality</option>
 				<option value="Urban">Urban</option>
@@ -154,7 +154,7 @@ select {
 
         </div>
 		
-		<div class="form-group" >
+		<div class="form-group">
             <input type="password" class="form-control required-field" name="password" id=password placeholder="Password">
 			<small class="error validation-message" id="password-validation"></small>
 
@@ -218,7 +218,7 @@ select {
 		});
 
 		function setupValidationHandlers() {
-			$(".required-field").keyup(validateRequiredField);
+			$(".required-field").change(validateRequiredField);
 		}
 
 		function validateRequiredField() {

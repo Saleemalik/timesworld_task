@@ -1,0 +1,22 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<br>
+<h1 class="text-center">Access Denied</h1>
+<hr>
+<br>
+
+<br>
+<div class="container-lg">
+  <div class="table-responsive">
+      <div class="table-wrapper">
+          <div class="table-title w-auto">
+              <div class="row" style="align-items: center; justify-content: center;">
+                <a name="homeA" href = "{% url 'LoginPage' %}" style= "color: floralwhite;" class="btn btn-block mb-4 bg-primary">Goto Login</a>
+                  
+              </div>
+          </div>
+      </div>
+  </div>
+<br>
+{% endblock %}

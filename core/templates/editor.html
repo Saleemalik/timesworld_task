@@ -3,7 +3,7 @@
 
 
 <br>
-<h1 class="text-center">ADMIN PAGE</h1>
+<h1 class="text-center">Editor PAGE</h1>
 <hr>
 <br>
        
@@ -21,37 +21,31 @@
                   
               </div>
           </div>
-          <table  class="table table-bordered  w-auto">
-              <thead>
-                  <tr>
-                      <th>productid</th>
-                      <th>username</th>
-                      <th>Email</th>
-                      <th>Address</th>
-                      <th>Actions</th>
-                  </tr>
-              </thead>
-              <tbody>
-                {% for user in users %}
-                  <tr>
-                      <td>{{user.id|lower}}</td>
-                      <td>{{user.username}}</td>
-                      <td>{{user.email}}</td>
-                      <td>{{user.address}}</td>
-                      <td>
-                        {% if user.is_superuser %}
-                          <p>super_user</p>
-                         
-                        {% else %}
-                          <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#edit{{user.id}}"><i class="material-icons">&#xE254;</i></a>
-                          <a class="delete" href="{% url 'userpage' user.id %}" data-method="DELETE" onclick="return confirm('Are you sure you want to delete this item?');" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        {% endif %}
-                      </td>
-                  </tr>
-                {% endfor %}
-                 
-                 
-              </tbody>
+          <table  class="table table-bordered" style="width: 100%;">
+            <tr>
+              <th>Name:</th>
+              <td>{{ request.user.username }}</td>
+            </tr>
+            <tr>
+              <th>Email:</th>
+              <td>{{ request.user.email}}</td>
+            </tr>
+            <tr>
+              <th>Mobile Number:</th>
+              <td>{{request.user.mobile_number}}</td>
+            </tr>
+            <tr>
+              <th>Role:</th>
+              <td>{{request.user.role}}</td>
+            </tr>
+            <tr>
+              <th>Nationality:</th>
+              <td>{{request.user.nationality}}</td>
+            </tr>
+            <tr>
+              <th>Country:</th>
+              <td>{{request.user.country}}</td>
+            </tr>
           </table>
           <!-- modal -->
           {% for user in users %}

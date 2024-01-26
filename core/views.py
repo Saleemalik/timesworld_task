@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
@@ -7,8 +7,6 @@ from django.views.generic.base import View, TemplateView
 from .models import User
 from django.contrib import auth
 from django.http.response import JsonResponse 
-
-
 
 
 class LoginPageView(View):
@@ -71,6 +69,35 @@ class RegistrationPageView(TemplateView):
         }
         return JsonResponse(data)
 
+class AdminPageView(View):
+    def get(self, request):
+        if request.user.is_authenticated and request.user.role == 'admin':
+            return render(request, 'admin.html', {'user': request.user})
+        else:
+            return redirect('access-denied')
 
-class HomePageView(TemplateView):
-    template_name = "user.html"
+class EditorPageView(View):
+    def get(self, request):
+        if request.user.is_authenticated and request.user.role == 'editor':
+            return render(request, 'editor.html', {'user': request.user})
+        return redirect('access-denied')
+
+class StaffPageView(View):
+    def get(self, request):
+        if request.user.is_authenticated and request.user.role == 'staff':
+            return render(request, 'staff.html', {'user': request.user})
+        return redirect('access-denied')
+
+class StudentPageView(View):
+    def get(self, request):
+        if request.user.is_authenticated and request.user.role == 'student':
+            return render(request, 'student.html', {'user': request.user})
+        return redirect('access-denied')
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect("/")
+
+def home(request):
+    return redirect(f"{request.user.role}/")
